@@ -2,15 +2,16 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ProcessingStatus } from '../../../enums';
-import { Survey } from '../../../interfaces';
+import { Answers, Survey } from '../../../interfaces';
 import { selectSurveys, selectSurveyState } from './slice';
-import { requestSurvey } from './actions';
+import { requestSurvey, submitQuestions } from './actions';
 
 interface UseSurvey {
   surveys: Survey;
   surveyState: ProcessingStatus;
 
   surveyRequest: () => void;
+  submitSurvey: (data: Answers[]) => void;
 }
 
 export function useSurvey(): UseSurvey {
@@ -23,9 +24,15 @@ export function useSurvey(): UseSurvey {
     dispatch,
   ]);
 
+  const submitSurvey = useCallback(
+    (data: Answers[]) => dispatch(submitQuestions(data)),
+    [dispatch]
+  );
+
   return {
     surveys,
     surveyState,
+    submitSurvey,
     surveyRequest,
   };
 }

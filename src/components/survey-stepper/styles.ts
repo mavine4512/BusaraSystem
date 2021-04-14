@@ -16,9 +16,15 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(1),
       fontFamily: primaryFonts.rubik,
     },
-    cta: {
-      marginTop: '10%',
-      justifyContent: 'flex-end',
+    title: {
+      fontFamily: primaryFonts.rubik,
+    },
+    divider: {
+      marginBottom: 10,
+    },
+    subSectionTitle: {
+      marginTop: 15,
+      fontFamily: primaryFonts.rubik,
     },
   })
 );

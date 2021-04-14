@@ -5,6 +5,9 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     padding: 15,
   },
+  submitBtn: {
+    fontSize: 13,
+  },
 }));
 
 export default useStyles;

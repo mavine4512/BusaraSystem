@@ -1,9 +1,12 @@
-import { createMuiTheme, Theme } from '@material-ui/core';
+import {
+  unstable_createMuiStrictModeTheme as createMuiTheme,
+  Theme,
+} from '@material-ui/core';
 
 export const primaryColor = {
   borderGray: '#e3e3e3',
-  danger: '#d70243',
-  lightBlue: '#244294',
+  danger: '#C70039',
+  lightBlue: '#4663ac',
   lightGray: '#ededed',
 };
 

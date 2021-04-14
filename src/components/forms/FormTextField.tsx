@@ -11,12 +11,15 @@ import { primaryFonts } from '../../constants/theme';
 const useStyles = makeStyles(() => ({
   textField: {
     marginTop: 20,
+    marginBottom: 10,
   },
   textFieldFont: {
     fontSize: 13,
+    textTransform: 'capitalize',
   },
   labelText: {
     fontSize: 14,
+    textTransform: 'capitalize',
     fontFamily: primaryFonts.rubik,
     marginTop: 10,
   },
@@ -38,8 +41,8 @@ export function FormTextField(props: Props): JSX.Element {
   return (
     <FormControl fullWidth>
       {label && (
-        <FormLabel className={labelText} component="legend">
-          Gender
+        <FormLabel className={labelText} component="span">
+          {label}
         </FormLabel>
       )}
       <Controller

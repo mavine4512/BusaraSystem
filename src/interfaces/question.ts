@@ -1,3 +1,5 @@
+import { Options } from './options';
+
 export interface Question {
   field_length: number;
   detail: string;
@@ -17,7 +19,7 @@ export interface Question {
   type: string;
   is_visible: boolean;
   text: string;
-  q_options: unknown[];
+  q_options: Options[];
   is_unique: boolean;
   is_unique_with: unknown[];
   created: string;

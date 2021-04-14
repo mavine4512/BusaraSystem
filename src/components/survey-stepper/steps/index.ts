@@ -1,2 +1,2 @@
 export * from './BioData';
-export * from './TaskOne';
+export * from './Other';

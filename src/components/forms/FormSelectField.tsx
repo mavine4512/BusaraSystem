@@ -9,12 +9,15 @@ import {
 } from '@material-ui/core';
 import { Control, Controller } from 'react-hook-form';
 import { primaryFonts } from '../../constants/theme';
+import { Options } from '../../interfaces';
 
 const useStyles = makeStyles(() => ({
   labelText: {
     fontSize: 14,
     fontFamily: primaryFonts.rubik,
     marginTop: 10,
+    marginBottom: 10,
+    textTransform: 'capitalize',
   },
 }));
 
@@ -23,37 +26,40 @@ interface Props {
   name: string;
   label?: string;
   control: Control;
+  options: Options[];
 }
 
-export function FormGenderField(props: Props): JSX.Element {
-  const { id, label, control, name: fieldName } = props;
+export function FormSelectField(props: Props): JSX.Element {
+  const { id, label, control, options, name: fieldName } = props;
   const { labelText } = useStyles();
 
   return (
     <FormControl fullWidth>
       {label && (
-        <FormLabel className={labelText} component="legend">
-          Gender
+        <FormLabel className={labelText} component="span">
+          {label}
         </FormLabel>
       )}
       <Controller
         name={fieldName}
         control={control}
-        render={({ name, value, onChange }): JSX.Element => (
+        render={({ name, onChange, value }): JSX.Element => (
           <RadioGroup
             id={id}
-            aria-label="gender"
+            aria-label={label}
+            onChange={onChange}
             name={name}
             value={value}
-            onChange={onChange}
           >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            {options &&
+              options.map((option) => (
+                <FormControlLabel
+                  key={`${option.id}-${option.name}`}
+                  value={`${option.id}`}
+                  label={option.name}
+                  control={<Radio />}
+                />
+              ))}
           </RadioGroup>
         )}
       />

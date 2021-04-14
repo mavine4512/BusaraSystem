@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
-import { apiAuthData, auth_token } from '../constants';
+import { apiAuthData, auth_token, refresh_token } from '../constants';
 import { ProcessLoginParam } from './process-login-param';
-import { getStoredData } from './store-auth-data';
+import { deleteStoredData, getStoredData } from './store-auth-data';
+import { HttpStatus } from '../interfaces';
+import { switchToPath } from './redirect';
+import { Paths } from '../enums';
 
 export const api = axios.create({
   baseURL: process.env.REACT_APP_API_DOMAIN,
@@ -14,7 +17,7 @@ api.interceptors.request.use(
   (config) => {
     const token = getStoredData(auth_token);
 
-    if (config.url === '/oauth/token/') {
+    if (config.url === 'oauth/token/') {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       config.data = ProcessLoginParam(
         config.data.username,
@@ -32,6 +35,19 @@ api.interceptors.request.use(
     return config;
   },
   () => console.log
+);
+
+api.interceptors.response.use(
+  (resp: AxiosResponse) => resp,
+  (error) => {
+    if (error.response.status === HttpStatus.UNAUTHORIZED) {
+      deleteStoredData(auth_token);
+      deleteStoredData(refresh_token);
+      switchToPath(Paths.AUTH);
+    }
+
+    return Promise.reject(error);
+  }
 );
 
 export function callGet<T>(url: string): Promise<AxiosResponse<T>> {

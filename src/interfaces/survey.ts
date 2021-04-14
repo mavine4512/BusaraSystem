@@ -49,4 +49,7 @@ export interface Survey {
 export interface SurveyForm {
   full_name: string;
   phone_number: string;
+  gender: string;
+  airtime_image: string;
+  cash_image: string;
 }

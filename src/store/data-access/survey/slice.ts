@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ProcessingStatus } from '../../../enums';
 import { Survey } from '../../../interfaces';
-import { requestSurvey } from './actions';
+import { requestSurvey, submitQuestions } from './actions';
 
 interface SurveyState {
   surveyState: ProcessingStatus;
@@ -37,6 +37,18 @@ const surveySlice = createSlice({
     });
 
     builder.addCase(requestSurvey.rejected, (state) => {
+      state.surveyState = ProcessingStatus.FAILED;
+    });
+
+    builder.addCase(submitQuestions.pending, (state) => {
+      state.surveyState = ProcessingStatus.PENDING;
+    });
+
+    builder.addCase(submitQuestions.fulfilled, (state, { payload }) => {
+      state.surveyState = ProcessingStatus.SUCCEEDED;
+    });
+
+    builder.addCase(submitQuestions.rejected, (state) => {
       state.surveyState = ProcessingStatus.FAILED;
     });
   },
