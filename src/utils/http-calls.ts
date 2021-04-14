@@ -14,7 +14,7 @@ api.interceptors.request.use(
   (config) => {
     const token = getStoredData(auth_token);
 
-    if (config.url === 'oauth/token/') {
+    if (config.url === '/oauth/token/') {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       config.data = ProcessLoginParam(
         config.data.username,
