@@ -1,3 +1,23 @@
+##More information
+
+The project was build on Reactjs and Typescript, it also uses Rest API from Busara center,
+New users must first register via the API so that to log in to the app. The app has a login page, a dashboard page that has questions and answers, on the dashboard user will be able to see his name, phone number, Identification, and his email.
+
+For the initial push which has no .env file which has the keys for security purpose, the user should use the  .env.example file on the git to come up with his own keys.
+
+the images for the system:
+![login](https://user-images.githubusercontent.com/43817772/114815556-131e4f80-9dbf-11eb-93d5-266643388566.png)
+
+![login error](https://user-images.githubusercontent.com/43817772/114815569-1f0a1180-9dbf-11eb-9b0b-dc6181cd38c3.png)
+
+![survey](https://user-images.githubusercontent.com/43817772/114815578-23362f00-9dbf-11eb-9ab2-64c370217706.png)
+
+![survey data](https://user-images.githubusercontent.com/43817772/114815584-27624c80-9dbf-11eb-8644-5400d1bc87b9.png)
+
+![survey data error](https://user-images.githubusercontent.com/43817772/114815593-2b8e6a00-9dbf-11eb-8aa5-3c8711d7a526.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
